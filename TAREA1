@@ -1,0 +1,22 @@
+¿Qué es un compilador?
+Un compilador es un pequeño programa informático, encargado de traducir (compilar) el código fuente de cualquier aplicación que se esté desarrollando. Es un software que se encarga de traducir el programa hecho en lenguaje de programación, a un lenguaje de máquina que pueda ser comprendido por el equipo y pueda ser procesado o ejecutado por este.
+
+¿Qué es un intérprete?
+Es un programa o software capaz de analizar y ejecutar programas escritos en lenguajes de alto nivel. Los intérpretes funcionan de manera distinta a los compiladores, ya que van traduciendo y ejecutando el código hecho por el programador o desarrollador línea a línea, cargando el código fuente y traduciendo las instrucciones a un lenguaje intermedio, para que el programa pueda ser ejecutado por el ordenador o la computadora en donde se está ejecutando el intérprete.
+Es decir genera un código binario que es interpretado por el ordenador cada vez que se ejecuta el programa escrito en lenguaje de alto nivel.
+
+Tipos de compiladores
+Compiladores cruzados: crea un  código ejecutable para otra plataforma distinta a aquélla en la que el compilador se ejecuta.
+Compiladores optimizadores: revisa el código generado a varios niveles de abstracción y realiza las optimizaciones (minimiza).
+Compiladores de una sola pasada: generan el código máquina a partir de una única lectura del código fuente.
+Compilaodres de varias pasadas: necesitan leer el código fuente varias veces antes de poder producir el código máquina.
+Compiladores JIT (Just In Time): forman parte de un intérprete y compilan partes del código según se necesitan.
+
+Emsamblado
+El lenguaje de ensamblador (assembly) no usa intermediarios, sino que directamente le dá las órdenes a la máquina.
+
+Auto compiladores
+Compilador que esta escrito en el mismo lenguaje que va a compilar.
+
+Compiladores incrementales
+Son capaces de interpretar y traducir el programa fuente, es decir, se va ejecutando el código que va generando, tiene como ventaja una alta velocidad y una respuesta rápida.

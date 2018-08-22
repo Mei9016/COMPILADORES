@@ -1,22 +1,26 @@
-import ply.yacc ass yacc
-import os
-import codecs
-import re 
-from analizadorlexico.py import tokens 
-from sys import stdin
+import ply.yacc ass yacc #Importamos de la libreria ply la function yacc
+import os #Interactúa con el sistema operativo
+import codecs #codificadores y decodificadores
+import re #Importamos el modulo re 
+from analizadorlexico.py import tokens #Del analizador léxico importamos los 
+from sys import stdin 
 
-
+#Se define que tokens por orden de prioridad
 precedence = (
-    (‘right’ , ‘ASSIGN’),
-    (‘right’ , ‘UPDATE’),
-    (‘left’ ,  ‘NE’),
-    (‘left’ ,  ‘LT’ , ‘LTE’ , ‘GT’ , ‘GTE’),
-    (‘left’ , ‘PLUS’ , ‘MINUS’),
-    (‘left’ , ‘TIMES’ , ‘DIVIDE’),
-    (‘right’ , ‘ODD’),
-    (‘left’ , ‘LPARENT’ , ‘RPARENT’),
+    ('right' , 'ASSIGN'), #Operador de asignación
+    ('right' , 'UPDATE'), #Operador de actualización 
+    ('left' ,  'NE'),
+    ('left' ,  'LT' , 'LTE' , 'GT', 'GTE'),
+    ('left' , 'PLUS' , 'MINUS'),  #Suma y resta 
+    ('left' ,'TIMES' , 'DIVIDE'), #Multiplicacion y division
+    ('right' , 'ODD'), #Sirve para ver si una expresión es impar 
+    ('left' , 'LPARENT' , 'RPARENT'),
 )
  
+#Definimos funciones 
+#Lista de producciones (p)
+#Regla gramatical lenguaje PL/0
+#Definimos nodos
 
 def   p_program(p):
         '''program  =  block'''
@@ -28,7 +32,7 @@ def  p_constDecl(p):
     #p[0]  = constDecl(p[2])
     print “constDecl”
  
-def p_constDeclEmpty(p):
+def p_constDeclEmpty(p): #No produce nada (vacio)
 '''constDecl = empty'''
     #p[0] = Null()
     print “nulo”
@@ -159,7 +163,48 @@ def p_empty(p):
  '''empty : '''
   pass
 
-# Lineno, nos permite saber en que línea se produce un error
 def p_error(p):
-  print “ërror de sintaxis”,p
-  print “error en la linea”+str(p.lineno) 
+  print “ërror de sintaxis”,p #Imprime si hay algun error de sintaxis
+  print “error en la linea”+str(p.lineno) # Lineno, nos permite saber en que línea se produce un error
+  
+#Declaramos funcion que recorre los ficheros
+ def buscarFicheros(directorio):
+  
+def buscarFicheros(directorio):
+	ficheros = []
+	numArchivo = ''
+	respuesta = False
+	cont = 1
+
+	for base, dirs, files in os.walk(directorio):
+		ficheros.append(files)
+
+	for file in files:
+		print str(cont)+". "+file
+		cont = cont+1
+
+	while respuesta == False:
+		numArchivo = raw_input('\nNumero del test ')
+		for file in files:
+			if file == files[int(numArchivo)-1]:
+				respuesta = True
+				break
+	print "Has escogido \"%s\" \n" %files[int(numArchivo)-1]
+
+
+	return files[int(numArchivo)-1]
+	
+	directorio = '/home/user/Desktop/lex-analizador/test'
+archivo = buscarFicheros(directorio))#contiene el nombre del archivo
+test = directorio+archivo #Contiene el directorio más el nombre del archivo
+fb = codecs.open(test,"r","utf-8") #Nos permite abrir el archive aunque contenga tildes o Ñ
+cadena =fb.read() #Contiene el código fuente del archivo
+fb.close() #Cierra el archivo
+
+
+#Se crea el parser que nos permite manejar el yacc
+#Yacc le permite al programa hacer el análisis sintáctico.
+parser  =  yacc.yacc()
+result   =  parser.parse(cadena)
+
+print result
